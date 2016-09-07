@@ -1,0 +1,52 @@
+#mongoose简单实用方法
+1，npm命令安装mongoose
+	npm install mongoose
+
+2,数据库连接的打开和关闭(test数据库为例)
+	var mongoose=require('mongoose');
+	var dbName=mongoose.connect('mongodb://localhost/test');
+
+	如果想要关闭连接
+	mongoose.disconnect();
+
+3,在用Mongoose管理数据时，需要注册schema
+	var schema=mongoose.Schema;
+	var Tasks=new Schema({
+		project:String,
+		desc:String
+	});
+	mongoose.modle('Task',Tasks);
+
+4,schema注册好后，你可以访问它，让Mongoose去工作
+	var Task=mongoose.model('Task');
+	var task=new Task();
+	this.project='EZMes';
+	this.desc="It's a client-server app using C#";
+	task.save(function(err){//保存数据
+		if(err) throw err;
+		console.log('Saved');
+	});
+
+5，所搜文档[find()]
+	var Task=mongoose.model('Task');
+	Task.find({'project':'EZMes'},function(err,tasks){
+		//err 读取数据的错误，tasks所搜返回的结果
+		//handle code
+	});
+
+6，更新文档[update()]
+	var Task=mongoose.model('Task');
+	Task.update(
+		{_id:'xxxxxxxxxxxx'},//按id主键更新
+		{$set{'desc':'It is a test'}},
+		{mutli:false},//只更新一个文档
+		function(err,rows_updated){
+			//handel codes here....
+		}
+	);
+
+7,删除文档[remove]
+	var Task=mongoose.model('Task');
+	Task.findById('_id',function(err,task){
+		task.remove();//删除数据
+	});
