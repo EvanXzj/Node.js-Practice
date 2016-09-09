@@ -1,0 +1,31 @@
+//添加className和ID,查看两种注释的区别
+div.content.sidebar#featured_content slogn
+//-指定标签的属性
+a(href='http://nodejs.org',target='_blank') link to Node.js
+
+//-多文本的书写方式
+textarea
+	| p1
+	| p2
+	| p3
+	| p4  
+textarea.
+	1
+	2
+	3
+	4
+// 用块扩展把它组织好 有了块扩展，你可以在标签后面用冒号表示嵌套
+ul
+	li
+		a(href='http://nodejs.org',target='_blank') link1
+	li
+		a(href='http://nodejs.org',target='_blank') link2
+	li
+		a(href='http://nodejs.org',target='_blank') link3
+
+//块扩展,可以在标签后面用冒号表示嵌套
+ul
+	li: a(href='http://nodejs.org',target='_blank') link4
+	li: a(href='http://nodejs.org',target='_blank') link5
+	li: a(href='http://nodejs.org',target='_blank') link6
+	
